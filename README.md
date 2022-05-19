@@ -3,13 +3,17 @@
 **Typeahead Suggestion**  
 A simple React app for an auto suggestion feature built in Go. When typing a word in the input form, it auto-suggests all the English words that share the same prefix as you type.  
 This repository only contains code for frontend.  
-    
-Deployed at: https://typeahead-suggestion.an.r.appspot.com/  
   
   
 ## Frontend and Backend  
 This project's frontend and backend are built separately.  
 Source files for backend are at: https://github.com/mikako-shirai/Typeahead-Suggestion  
+  
+  
+## Deployment  
+Frontend: deployed at https://typeahead-suggestion.an.r.appspot.com/  
+Backend: deployed at https://typeahead-suggestion-be.an.r.appspot.com/  
+(Since this is a server side, there will be nothing on the page)  
   
   
 ## Built with  
