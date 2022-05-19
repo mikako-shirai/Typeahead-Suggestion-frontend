@@ -4,72 +4,59 @@ import axios from "axios";
 import Suggestions from "./Suggestions.jsx";
 
 const Form = () => {
-  const URL_LOCALHOST = "http://localhost:3000";
-  const URL_GCP = "https://typeahead-suggestion-be.an.r.appspot.com";
+  const development = false;
+  const URL = development ? "http://localhost:8080" : "https://typeahead-suggestion-be.an.r.appspot.com";
 
   const [form, setForm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const handleChange = async (event) => {
+    event.preventDefault();
+
     setForm(event.target.value);
-    setShowSuggestions(true);
     await showWords();
+    setShowSuggestions(true);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     await addNewWord();
     setForm("");
     setShowSuggestions(false);
   };
 
-  const newInput = () => {
+  const formatInput = () => {
     const currentStr = form;
-    return formatInput(currentStr);
-  };
-
-  const formatInput = (input) => {
-    let str = input.replace(/(^\s+)|(\s+$)/g, "");
+    let str = currentStr.replace(/(^\s+)|(\s+$)/g, "");
     const strs = str.split(" ");
-
     return strs[0];
-
-    // spaces
-    // let output = "";
-    // let add = false;
-
-    // for (const char of strs) {
-    //   if (add) output += " ";
-    //   if (char) output += char.toLowerCase();
-    //   add = char ? true : false;
-    // }
-
-    // return output;
   };
 
   const getAllWords = async () => {
-    const res = await axios.get(`${URL_GCP}/all`);
+    const res = await axios.get(`${URL}/all`);
     const words = res.data;
     setSuggestions(words);
   };
 
   const showWords = async () => {
-    const prefix = newInput();
-    const res = await axios.get(`${URL_GCP}/search?prefix=${prefix}`);
+    const prefix = formatInput();
+    const res = await axios.get(`${URL}/search?prefix=${prefix}`);
     const words = res.data;
     setSuggestions(words);
   };
 
   const addNewWord = async() => {
-    const word = newInput();
+    const word = formatInput();
     if (!word)  return;
 
-    await axios.get(`${URL_GCP}/add?word=${word}`);
+    await axios.get(`${URL}/add?word=${word}`);
   };
 
   useEffect(() => {
     getAllWords();
+    console.log(`server running on ${URL}`);
   }, []);
 
   useEffect(() => {
@@ -81,7 +68,7 @@ const Form = () => {
       <div onClick={() => { setShowSuggestions(false) }} className="overlay"></div>
       <div className="form-wrapper">
         <form onSubmit={handleSubmit} className="form">
-          <div className="form-title">Search Words</div>
+          <div className="form-title">English Words List</div>
           <input
             onClick={handleChange}
             onChange={handleChange}
@@ -96,7 +83,7 @@ const Form = () => {
             setShowSuggestions={setShowSuggestions}
             setForm={setForm}
           />}
-          <button type="submit">Search</button>
+          <button type="submit">Add New Word</button>
         </form>
       </div>
     </div>

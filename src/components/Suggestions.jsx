@@ -5,7 +5,6 @@ const Suggestions = ({ suggestions, setShowSuggestions, setForm }) => {
   const handleClick = async (suggestion) => {
     setForm(suggestion);
     setShowSuggestions(false);
-    // frequency
   };
 
   return (
