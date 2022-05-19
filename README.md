@@ -4,7 +4,7 @@
 A simple React app for an auto suggestion feature built in Go. When typing a word in the input form, it auto-suggests all the English words that share the same prefix as you type.  
 This repository only contains code for frontend.  
     
-Deployed at: ~~https://typeahead-suggestion-be.an.r.appspot.com/~~  
+Deployed at: https://typeahead-suggestion.an.r.appspot.com/  
   
   
 ## Frontend and Backend  
