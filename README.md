@@ -10,12 +10,6 @@ This project's frontend and backend are built separately.
 Source files for backend are at: https://github.com/mikako-shirai/Typeahead-Suggestion  
   
   
-## Deployment  
-Frontend: deployed at https://typeahead-suggestion.an.r.appspot.com/  
-Backend: deployed at https://typeahead-suggestion-be.an.r.appspot.com/  
-(Since this is a server side, there will be nothing on the page)  
-  
-  
 ## Built with  
 **Frontend**  
 - [React](https://reactjs.org/)  
@@ -24,6 +18,12 @@ Backend: deployed at https://typeahead-suggestion-be.an.r.appspot.com/
   
 **Backend**  
 - [GCP App Engine](https://cloud.google.com/appengine/)  
+  
+  
+## Deployment  
+Hosted the app on https://typeahead-suggestion.an.r.appspot.com/  
+  
+(Server side is hosted on https://typeahead-suggestion-be.an.r.appspot.com/)  
   
   
 ## Getting Started    
