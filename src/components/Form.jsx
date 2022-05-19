@@ -62,9 +62,7 @@ const Form = () => {
     const word = newInput();
     if (!word)  return;
 
-    const res = await axios.get(`http://localhost:8090/add?word=${word}`);
-    const wordAdded = res.data;
-    console.log(`added to the trie  :  "${wordAdded}"`);
+    await axios.get(`http://localhost:8090/add?word=${word}`);
   };
 
   useEffect(() => {
