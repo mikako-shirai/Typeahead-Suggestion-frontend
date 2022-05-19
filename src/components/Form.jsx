@@ -4,8 +4,8 @@ import axios from "axios";
 import Suggestions from "./Suggestions.jsx";
 
 const Form = () => {
-  const development = false;
-  const URL = development ? "http://localhost:8080" : "https://typeahead-suggestion-be.an.r.appspot.com";
+  const production = true;
+  const URL = !production ? "http://localhost:8080" : "https://typeahead-suggestion-be.an.r.appspot.com";
 
   const [form, setForm] = useState("");
   const [suggestions, setSuggestions] = useState([]);

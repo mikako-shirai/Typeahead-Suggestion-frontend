@@ -15,6 +15,7 @@ Source files for backend are at: https://github.com/mikako-shirai/Typeahead-Sugg
 ## Built with  
 **Frontend**  
 - [React](https://reactjs.org/)  
+- [axios](https://axios-http.com/)  
 - [GCP App Engine](https://cloud.google.com/appengine/)  
   
 **Backend**  
