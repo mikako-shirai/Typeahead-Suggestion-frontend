@@ -1,0 +1,109 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  margin-top: 15vh;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.form-bg {
+  background: rgba(0, 0, 0, 0.355);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-75deg, #cbddd0, #cacede);
+  height: 45vh;
+  min-height: 30rem;
+  width: 42vw;
+  min-width: 25rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 35px rgba(0, 0, 0, 0.173);
+}
+
+.form {
+  display: flex;
+  flex-flow: column;
+}
+
+.form-title {
+  color: rgb(137, 137, 137);
+  font-size: 1.7rem;
+  font-weight: 200;
+  margin-bottom: 5vh;
+}
+
+.form input {
+  font-size: 1.1rem;
+  padding: 0.4rem 0.6rem;
+  border-style: none;
+  border: #a7bcb9 solid 0.1rem;
+  border-radius: 0.2rem;
+  z-index: 10000;
+  box-shadow: 0 1px 25px rgba(0, 0, 0, 0.119);
+}
+
+.form button {
+  color: #ffffff;
+  background: linear-gradient(-105deg, #a7bcb9, #b0b4c5);
+  font-size: 1.2rem;
+  width: 8rem;
+  margin: 2.5rem 2rem 0 2rem;
+  padding: 1rem;
+  border-style: none;
+  border-radius: 0.6rem;
+  box-shadow: 0 1px 25px rgba(0, 0, 0, 0.119);
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.suggestions {
+  text-align: left;
+  height: 9.33rem;
+  width: 100%;
+  border-radius: 0.2rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  overflow: auto;
+}
+
+.suggestion {
+  color: #6c7976;
+  background: #ffffff36;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border-top: #a7bcb984 solid 0.05rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  z-index: 10000;
+  overflow: auto;
+}
