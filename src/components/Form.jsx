@@ -4,6 +4,9 @@ import axios from "axios";
 import Suggestions from "./Suggestions.jsx";
 
 const Form = () => {
+  const URL_LOCALHOST = "http://localhost:3000";
+  const URL_GCP = "https://typeahead-suggestion-be.an.r.appspot.com";
+
   const [form, setForm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -46,14 +49,14 @@ const Form = () => {
   };
 
   const getAllWords = async () => {
-    const res = await axios.get("http://localhost:8090/all");
+    const res = await axios.get(`${URL_GCP}/all`);
     const words = res.data;
     setSuggestions(words);
   };
 
   const showWords = async () => {
     const prefix = newInput();
-    const res = await axios.get(`http://localhost:8090/search?prefix=${prefix}`);
+    const res = await axios.get(`${URL_GCP}/search?prefix=${prefix}`);
     const words = res.data;
     setSuggestions(words);
   };
@@ -62,7 +65,7 @@ const Form = () => {
     const word = newInput();
     if (!word)  return;
 
-    await axios.get(`http://localhost:8090/add?word=${word}`);
+    await axios.get(`${URL_GCP}/add?word=${word}`);
   };
 
   useEffect(() => {
