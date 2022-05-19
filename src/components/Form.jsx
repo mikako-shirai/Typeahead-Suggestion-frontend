@@ -16,9 +16,33 @@ const Form = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // await addNewWord();
+    await addNewWord();
     setForm("");
     setShowSuggestions(false);
+  };
+
+  const newInput = () => {
+    const currentStr = form;
+    return formatInput(currentStr);
+  };
+
+  const formatInput = (input) => {
+    let str = input.replace(/(^\s+)|(\s+$)/g, "");
+    const strs = str.split(" ");
+
+    return strs[0];
+
+    // spaces
+    // let output = "";
+    // let add = false;
+
+    // for (const char of strs) {
+    //   if (add) output += " ";
+    //   if (char) output += char.toLowerCase();
+    //   add = char ? true : false;
+    // }
+
+    // return output;
   };
 
   const getAllWords = async () => {
@@ -28,34 +52,19 @@ const Form = () => {
   };
 
   const showWords = async () => {
-    const res = await axios.get(`http://localhost:8090/search?word=${newInput()}`);
+    const prefix = newInput();
+    const res = await axios.get(`http://localhost:8090/search?prefix=${prefix}`);
     const words = res.data;
-    if (words) setSuggestions(words);
-    console.log(words);
+    setSuggestions(words);
   };
 
   const addNewWord = async() => {
-    await axios.post("http://localhost:8090/add", newInput());
-  };
+    const word = newInput();
+    if (!word)  return;
 
-  const newInput = () => {
-    const currentStr = form;
-    return formatInput(currentStr);
-  };
-
-  const formatInput = (input) => {
-    let output = "";
-    let add = false;
-
-    let str = input.replace(/(^\s+)|(\s+$)/g, "");
-    const strs = str.split(" ");
-
-    for (const char of strs) {
-      if (add) output += " ";
-      if (char) output += char.toLowerCase();
-      add = char ? true : false;
-    }
-    return output;
+    const res = await axios.get(`http://localhost:8090/add?word=${word}`);
+    const wordAdded = res.data;
+    console.log(`added to the trie  :  "${wordAdded}"`);
   };
 
   useEffect(() => {
@@ -73,6 +82,7 @@ const Form = () => {
         <form onSubmit={handleSubmit} className="form">
           <div className="form-title">Search Words</div>
           <input
+            onClick={handleChange}
             onChange={handleChange}
             type="text"
             value={form}

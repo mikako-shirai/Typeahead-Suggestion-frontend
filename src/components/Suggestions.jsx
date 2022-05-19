@@ -1,17 +1,11 @@
 import React from "react";
-import axios from "axios";
 
 const Suggestions = ({ suggestions, setShowSuggestions, setForm }) => {
 
   const handleClick = async (suggestion) => {
-    // await addNewWord(suggestion);
-    setForm("");
+    setForm(suggestion);
     setShowSuggestions(false);
     // frequency
-  };
-
-  const addNewWord = async(suggestion) => {
-    await axios.post("http://localhost:8090/add", suggestion);
   };
 
   return (
