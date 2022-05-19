@@ -4,16 +4,16 @@ import axios from "axios";
 import Suggestions from "./Suggestions.jsx";
 
 const Form = () => {
-  const production = true;
+  const production = false;
   const URL = !production ? "http://localhost:8080" : "https://typeahead-suggestion-be.an.r.appspot.com";
 
   const [form, setForm] = useState("");
+  const [chosen, setChosen] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const handleChange = async (event) => {
     event.preventDefault();
-
     setForm(event.target.value);
     await showWords();
     setShowSuggestions(true);
@@ -21,10 +21,13 @@ const Form = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     await addNewWord();
     setForm("");
+  };
+
+  const handleOverlay = () => {
     setShowSuggestions(false);
+    setChosen("");
   };
 
   const formatInput = () => {
@@ -52,6 +55,7 @@ const Form = () => {
     if (!word)  return;
 
     await axios.post(`${URL}/insert`, word);
+    setChosen(word);
   };
 
   useEffect(() => {
@@ -65,7 +69,16 @@ const Form = () => {
 
   return (
     <div className="form-bg">
-      <div onClick={() => { setShowSuggestions(false) }} className="overlay"></div>
+      <div className="form-wrapper"></div>
+      <div className="form-wrapper">
+        {showSuggestions && 
+        <Suggestions
+          suggestions={suggestions}
+          setForm={setForm}
+          setChosen={setChosen}
+        />}
+      </div>
+      <div onClick={handleOverlay} className="overlay"></div>
       <div className="form-wrapper">
         <form onSubmit={handleSubmit} className="form">
           <div className="form-title">English Words List</div>
@@ -77,15 +90,13 @@ const Form = () => {
             placeholder="Search..."
             required
           />
-          {showSuggestions && 
-          <Suggestions
-            suggestions={suggestions}
-            setShowSuggestions={setShowSuggestions}
-            setForm={setForm}
-          />}
           <button type="submit">Add New Word</button>
         </form>
       </div>
+      <div className="form-wrapper">
+        <div className="chosen">{chosen}</div>
+      </div>
+      <div className="form-wrapper"></div>
     </div>
   );
 };

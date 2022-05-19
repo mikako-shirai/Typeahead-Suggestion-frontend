@@ -1,10 +1,10 @@
 import React from "react";
 
-const Suggestions = ({ suggestions, setShowSuggestions, setForm }) => {
+const Suggestions = ({ suggestions, setForm, setChosen }) => {
 
   const handleClick = async (suggestion) => {
     setForm(suggestion);
-    setShowSuggestions(false);
+    setChosen(suggestion);
   };
 
   return (
