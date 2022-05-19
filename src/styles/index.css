@@ -44,7 +44,7 @@ body {
   background: linear-gradient(-75deg, #cbddd0, #cacede);
   height: 45vh;
   min-height: 30rem;
-  width: 42vw;
+  width: 42vh;
   min-width: 25rem;
   border-radius: 1.5rem;
   box-shadow: 0 1px 35px rgba(0, 0, 0, 0.173);
@@ -76,9 +76,9 @@ body {
   color: #ffffff;
   background: linear-gradient(-105deg, #a7bcb9, #b0b4c5);
   font-size: 1.2rem;
-  width: 8rem;
+  width: fit-content;
   margin: 2.5rem 2rem 0 2rem;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-style: none;
   border-radius: 0.6rem;
   box-shadow: 0 1px 25px rgba(0, 0, 0, 0.119);
@@ -97,8 +97,8 @@ body {
 }
 
 .suggestion {
-  color: #6c7976;
-  background: #ffffff36;
+  color: #616f6c;
+  background: #ffffff3f;
   font-size: 0.9rem;
   padding: 0.4rem 0.6rem;
   border-top: #a7bcb984 solid 0.05rem;

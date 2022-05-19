@@ -4,7 +4,7 @@ import axios from "axios";
 import Suggestions from "./Suggestions.jsx";
 
 const Form = () => {
-  const development = false;
+  const development = true;
   const URL = development ? "http://localhost:8080" : "https://typeahead-suggestion-be.an.r.appspot.com";
 
   const [form, setForm] = useState("");
@@ -28,8 +28,8 @@ const Form = () => {
   };
 
   const formatInput = () => {
-    const currentStr = form;
-    let str = currentStr.replace(/(^\s+)|(\s+$)/g, "");
+    const currentStr = form.toLowerCase();
+    let str = currentStr.replace(/(^\s+)|(\s+$)|([^a-z])/g, "");
     const strs = str.split(" ");
     return strs[0];
   };
@@ -51,7 +51,7 @@ const Form = () => {
     const word = formatInput();
     if (!word)  return;
 
-    await axios.get(`${URL}/add?word=${word}`);
+    await axios.post(`${URL}/insert`, word);
   };
 
   useEffect(() => {
